@@ -17,7 +17,7 @@ const characterBlockCount = {
   b: 0,
 };
 
-/** @type {string} */
+/** @type {string | undefined} */
 let prevChar = '';
 
 /** @type {number} */
@@ -26,6 +26,7 @@ let chunkCount = 0;
 // rs.on('data', (data) => {
 //   dataCount += 1;
 // });
+console.time('time_measure');
 rs.on('data', (data) => {
   // default data is Buffer
   chunkCount += 1;
@@ -47,7 +48,6 @@ rs.on('error', () => {
 });
 // when it ends
 rs.on('end', () => {
-  log('Event:end');
-  log('chunkCount', chunkCount);
-  log('dataCount', characterBlockCount);
+  console.timeEnd('time_measure');
+  log('blockCount', characterBlockCount);
 });
