@@ -1,5 +1,15 @@
 {
+  "engines": {
+    "node": "16.15.0"
+  },
   "dependencies": {
-    "decamelize": "~3.1.0"
+    "@types/node": "^18.0.0",
+    "decamelize": "~3.1.0",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0"
   }
 }
