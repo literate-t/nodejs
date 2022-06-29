@@ -13,6 +13,7 @@ https.get(`https://api.gameofthronesquotes.xyz/v1/houses`, (res) => {
   });
   res.on('end', () => {
     const houses = JSON.parse(jsonStr);
+    //console.log('houses', houses);
 
     let numMembersDone = 0;
     let numTotalMembers = 0;
@@ -38,13 +39,14 @@ https.get(`https://api.gameofthronesquotes.xyz/v1/houses`, (res) => {
               });
               res.on('end', () => {
                 const json = JSON.parse(jsonStr);
+                //console.log(json);
                 const mergedQuotes = json[0].quotes
                   .join(' ')
                   .replace(/[^a-zA-Z0-9., ]/g, '');
                 const body = JSON.stringify({
                   text: mergedQuotes,
                 });
-
+                //console.log(body);
                 const postReq = https.request(
                   {
                     hostname: 'sentim-api.herokuapp.com',
@@ -58,14 +60,14 @@ https.get(`https://api.gameofthronesquotes.xyz/v1/houses`, (res) => {
                   },
                   (res) => {
                     let jsonStr = '';
-                    console.log(body, res.statusCode, res.statusMessage);
+                    //console.log(body, res.statusCode, res.statusMessage);
                     res.setEncoding('utf-8');
                     res.on('data', (data) => {
                       jsonStr += data;
                     });
                     res.on('end', () => {
                       const result = JSON.parse(jsonStr);
-
+                      console.log(result);
                       resultsByHouseSlugs[houseSlug] =
                         resultsByHouseSlugs[houseSlug] || [];
                       resultsByHouseSlugs[houseSlug].push({
